@@ -1,0 +1,79 @@
+backend/
+│
+├── src/
+│   │
+│   ├── config/
+│   │   ├── db.js
+│   │   ├── env.js
+│   │   └── cloudinary.js  
+│   │
+│   ├── controllers/
+│   │   ├── auth.controller.js
+│   │   ├── user.controller.js
+│   │   ├── wallet.controller.js
+│   │   ├── task.controller.js
+│   │   ├── transaction.controller.js
+│   │   ├── deposit.controller.js
+│   │   ├── withdrawal.controller.js
+│   │   ├── notification.controller.js
+│   │   ├── referral.controller.js
+│   │   └── admin.controller.js
+│   │
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── Wallet.js
+│   │   ├── Task.js
+│   │   ├── Transaction.js
+│   │   ├── Deposit.js
+│   │   ├── Withdrawal.js
+│   │   ├── Notification.js
+│   │   ├── Referral.js
+│   │   └── Admin.js
+│   │
+│   ├── routes/
+│   │   ├── auth.routes.js
+│   │   ├── user.routes.js
+│   │   ├── wallet.routes.js
+│   │   ├── task.routes.js
+│   │   ├── transaction.routes.js
+│   │   ├── deposit.routes.js
+│   │   ├── withdrawal.routes.js
+│   │   ├── notification.routes.js
+│   │   ├── referral.routes.js
+│   │   └── admin.routes.js
+│   │
+│   ├── middleware/
+│   │   ├── auth.js
+│   │   ├── admin.js
+│   │   ├── errorHandler.js
+│   │   ├── notFound.js
+│   │   └── validate.js
+│   │
+│   ├── services/
+│   │   ├── auth.service.js
+│   │   ├── wallet.service.js
+│   │   ├── task.service.js
+│   │   ├── email.service.js
+│   │   └── notification.service.js
+│   │
+│   ├── utils/
+│   │   ├── generateToken.js
+│   │   ├── generateOTP.js
+│   │   ├── apiResponse.js
+│   │   ├── asyncHandler.js
+│   │   └── constants.js
+│   │
+│   ├── validators/
+│   │   ├── auth.validator.js
+│   │   ├── user.validator.js
+│   │   └── task.validator.js
+│   │
+│   ├── uploads/
+│   │
+│   ├── app.js
+│   └── server.js
+│
+├── .env
+├── .gitignore
+├── package.json
+└── README.md
