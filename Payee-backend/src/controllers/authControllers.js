@@ -15,7 +15,7 @@ const createToken = (user)=>{
 
 export const registerUser = async (req, res) => {
     try {
-            const { firstName, lastName, email, password } = req.body;
+            const { username, email, password } = req.body;
     const errors = validationResult(req) 
 
     if (!errors.isEmpty()) {
@@ -33,8 +33,7 @@ export const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     const newUser = new User({
-        firstName,
-        lastName,
+       username,
         email,
         password:hashedPassword,
     })
@@ -44,7 +43,7 @@ export const registerUser = async (req, res) => {
         message:"User Created Successsfully",
         user:{
             id:newUser._id,
-            firstname:newUser.firstName,
+            username:newUser.username,
             email:newUser.email
         },
         token:createToken(newUser)
@@ -55,6 +54,18 @@ export const registerUser = async (req, res) => {
 
 }
 
-export const loginUser = (req, res) => {
-    
+export const loginUser = async (req, res) => {
+    try {
+         const {username, password} = req.body;
+
+    const existingUser = await User.findOne({username})
+    if (!existingUser) {
+        return res.status(400).json({message:"User Not Found Create Account First"})
+    }
+    } catch (error) {
+        return res.status(500).json({message:"Server Error"})
+    }
+   
+
+
 }

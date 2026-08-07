@@ -1,13 +1,9 @@
 import { body } from "express-validator";
 
 export const registerValidation = [
-  body("firstName")
+  body("username")
     .notEmpty()
-    .withMessage("First name is required"),
-
-  body("lastName")
-    .notEmpty()
-    .withMessage("Last name is required"),
+    .withMessage("username is required"),
 
   body("email")
     .isEmail()
