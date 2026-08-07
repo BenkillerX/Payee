@@ -6,8 +6,9 @@ import jwt from "jsonwebtoken"
 const createToken = (user)=>{
     const payload = {
         id:user._id,
-        firstname:user.firstName,
+        username:user.username,
         email:user.email,
+        role:user.role
     }
     const token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn:"7d"})
     return token;
@@ -57,11 +58,20 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
     try {
          const {username, password} = req.body;
+        const errors = validationResult(req)
 
     const existingUser = await User.findOne({username})
     if (!existingUser) {
         return res.status(400).json({message:"User Not Found Create Account First"})
     }
+    const isMatch = await bcrypt.compare(password, existingUser.password);
+    if (!isMatch) {
+        return res.status(400).json({message:"Invalid Password"})
+    }
+    res.status(201).json({
+        message:"Login IN Successfully",
+        token:createToken(existingUser)
+    })
     } catch (error) {
         return res.status(500).json({message:"Server Error"})
     }

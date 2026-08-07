@@ -77,3 +77,55 @@ backend/
 ├── .gitignore
 ├── package.json
 └── README.md
+
+
+
+
+
+
+
+
+
+
+AUTHENTICATION
+├── Register ✅
+├── Login ✅
+├── JWT generation ✅
+│
+├── Authentication middleware  ✅
+│
+└── Authorization / RBAC       ← NEXT
+
+USER
+├── Get current user (/me)
+├── Update profile
+└── Account settings
+
+WALLET
+├── Wallet
+├── Balance
+├── Deposit
+├── Withdrawal
+└── Transactions
+
+TASKS
+├── Task listing
+├── Task details
+├── Submit task
+└── Task history
+
+REFERRALS
+├── Referral code
+├── Referral users
+└── Referral rewards
+
+NOTIFICATIONS
+└── User notifications
+
+ADMIN
+├── Dashboard
+├── Users
+├── Tasks
+├── Deposits
+├── Withdrawals
+└── Transactions
