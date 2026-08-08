@@ -18,33 +18,55 @@ export const getCurrentUser = async (req, res)=>{
     }
 } 
 
-export const updateProfile = async (req, res)=>{
+export const updateProfile = async (req, res) => {
     try {
-        const {updatedData} = req.body;
-        const {id} = req.user._id
-        const errors = validationResult(req)    
+        const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
             return res.status(400).json({
-                errors:errors.array()
-            })
+                errors: errors.array()
+            });
+        }
+
+        const id = req.user.id;
+
+        const { username, email } = req.body;
+
+        const updatedData = {};
+
+        if (username !== undefined) {
+            updatedData.username = username;
+        }
+
+        if (email !== undefined) {
+            updatedData.email = email;
         }
 
         const updatedUser = await User.findByIdAndUpdate(
             id,
             updatedData,
-            {mew:true, runValidators:true}
-        );
+            {
+                new: true,
+                runValidators: true
+            }
+        ).select("-password");
 
         if (!updatedUser) {
             return res.status(404).json({
-                message:"User Not Found"
-            })
+                message: "User Not Found"
+            });
         }
 
-        return res.status(200).json(updatedUser);
+        return res.status(200).json({
+            message: "Profile Updated Successfully",
+            user: updatedUser
+        });
+
     } catch (error) {
-        return res.status(500).json({message:"server error"
-        })
+        console.error(error);
+
+        return res.status(500).json({
+            message: "Server Error"
+        });
     }
-}
+};
