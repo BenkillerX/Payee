@@ -99,7 +99,7 @@ AUTHENTICATION
 USER
 ├── Get current user (/me)✅
 ├── Update profile✅
-└── Account settings
+└── Account settings✅
 
 WALLET
 ├── Wallet
@@ -129,3 +129,13 @@ ADMIN
 ├── Deposits
 ├── Withdrawals
 └── Transactions
+
+
+| Setting                   | Purpose                                              | Endpoint                 |
+| ------------------------- | ---------------------------------------------------- | ------------------------ |
+| Change password           | Allow user to change their password                  | `PUT /api/user/password` |✅
+| Change email              | Change account email                                 | `PUT /api/user/email`    |✅
+| Account status            | Usually display whether account is active            | Read-only                |
+| Delete/deactivate account | Allow user to close their account                    | `DELETE /api/user/me`    |
+| Logout                    | Invalidate the user's session/token strategy         | `POST /api/auth/logout`  |
+| Account information       | Display username, email, account creation date, etc. | `GET /api/user/me`       |

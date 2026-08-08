@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authenticateToken, authorizeRoles } from "../middleware/authMiddleware.js";
-import { changePassword, getCurrentUser, updateProfile } from "../controllers/userControllers.js";
+import { changePassword, getCurrentUser, Logout, updateProfile } from "../controllers/userControllers.js";
 import { passwordValidator, userProfileValidation } from "../validators/user.profile.validation.js";
 
 const userRoutes = Router();
@@ -12,5 +12,5 @@ userRoutes.patch("/me", authenticateToken, authorizeRoles("user", "admin"), user
 
 //to allow users to change password
 userRoutes.put("/password", authenticateToken,authorizeRoles("user", "admin") ,passwordValidator, changePassword)
-
+userRoutes.post("/logout", Logout)
 export default userRoutes;

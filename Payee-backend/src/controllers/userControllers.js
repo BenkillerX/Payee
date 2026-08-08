@@ -113,3 +113,44 @@ export const changePassword = async (req, res)=>{
         })
     }
 }
+
+export const changeEmail = async (req, res)=>{
+    try {
+        const {newEmail} = req.body;
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors:errors.array()
+            })
+        }
+        const storedUser = await User.findById(req.user.id);
+        if (!storedUser) {
+            return res.status(404).json({
+                message:"User Not found"
+            })
+        }
+        storedUser.email = newEmail;
+        await storedUser.save()
+    } catch (error) {
+        return res.status(500).json({
+            message:"Server Error try again later"
+        })
+    }
+}
+
+export const Logout = async ()=>{
+    try {
+        res.clearCookie("accessToken", {
+            httpOnly:true,
+            secure:process.env.NODE_ENV === "production",
+            sameSite:"strict"
+        });
+        res.status(200).json({
+            message:"Logout sucessful"
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message:"Server Error"
+        })
+    }
+}
