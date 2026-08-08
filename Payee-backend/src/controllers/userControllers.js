@@ -1,5 +1,6 @@
 import { validationResult } from "express-validator";
 import User from "../models/User.js"
+import bcrypt from "bcrypt"
 
 export const getCurrentUser = async (req, res)=>{
     try {
@@ -19,6 +20,7 @@ export const getCurrentUser = async (req, res)=>{
 } 
 
 export const updateProfile = async (req, res) => {
+     console.log("3. updateProfile reached");
     try {
         const errors = validationResult(req);
 
@@ -70,3 +72,44 @@ export const updateProfile = async (req, res) => {
         });
     }
 };
+
+export const changePassword = async (req, res)=>{
+    try {
+        const {currentPassword, newPassword} = req.body
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array()
+            })
+        }
+        const storedUser = await User.findById(req.user.id)
+        
+        if (!storedUser) {
+            return res.status(404).json({
+                message:"User Not Found"
+            })
+        }
+        const isMatch = await bcrypt.compare(currentPassword, storedUser.password)
+
+        if (!isMatch) {
+            return res.status(400).json({
+                message:"Current Password Incorrect"
+            })
+        }
+        const saltRounds = 12;
+
+        const hashPassword = await bcrypt.hash(newPassword, saltRounds)
+
+        storedUser.password = hashPassword
+
+        await storedUser.save()
+
+        return res.status(200).json({
+            message:"Password Changed Successfully"
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message:"Server Error"
+        })
+    }
+}
