@@ -94,11 +94,11 @@ AUTHENTICATION
 │
 ├── Authentication middleware  ✅
 │
-└── Authorization / RBAC       ← NEXT
+└── Authorization / RBAC       ✅
 
 USER
-├── Get current user (/me)
-├── Update profile
+├── Get current user (/me)✅
+├── Update profile✅
 └── Account settings
 
 WALLET

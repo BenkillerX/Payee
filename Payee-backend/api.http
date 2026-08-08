@@ -44,3 +44,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNzU1NTAzM
 {
   "username": "Ben103"
 }
+
+### testing update user api
+PATCH  http://localhost:5000/api/user/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNzU1NTAzMmY0YTlhYzYzMzgzNmEwYyIsInVzZXJuYW1lIjoiQmVuMTAzIiwiZW1haWwiOiJiZW4xMDNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3ODYxMDEzMzAsImV4cCI6MTc4NjcwNjEzMH0.bWy5SgDrSnI2yqH9mbN92halfrv0efy0Wk4EkNUUg90
+
+{
+  "username": "Benz103"
+}
+
+
+
+### testing update user api
+PATCH  http://localhost:5000/api/user/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNzU1NTAzMmY0YTlhYzYzMzgzNmEwYyIsInVzZXJuYW1lIjoiQmVuMTAzIiwiZW1haWwiOiJiZW4xMDNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3ODYxMDEzMzAsImV4cCI6MTc4NjcwNjEzMH0.bWy5SgDrSnI2yqH9mbN92halfrv0efy0Wk4EkNUUg90
+
+{
+  "username": "Benz103"
+}

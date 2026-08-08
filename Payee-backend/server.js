@@ -15,9 +15,15 @@ app.use('/api/user', userRoutes)
 
 
 
+app.get('/api/test', (req, res)=>{
+    res.status(200).json({
+        message:"Tellng You without ai you know what you are doing"
+    })
+})
+
 connectDB().then(
     app.listen(process.env.PORT, ()=>{
-            console.log(`Server is running on port ${process.env.PORT}`);
+    console.log(`Server is running on port ${process.env.PORT}`);
 })
 )
 
